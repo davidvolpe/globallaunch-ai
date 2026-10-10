@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="description" content="GlobalLaunch AI — evidence-aware cross-border marketing strategy and localisation workbench."/>
+  <meta name="theme-color" content="#101d31"/>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+  <link rel="stylesheet" href="/styles.css?v=0.6.0"/>
+  <title>GlobalLaunch AI — Launch Studio</title>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="appSidebar" aria-label="工作区导航">
+    <div class="side-head">
+      <div class="brand-lockup"><div class="brand-icon" aria-hidden="true"><span>✦</span></div><div class="brand-copy"><div class="brand-name">GlobalLaunch<span class="brand-ai"> AI</span></div><div class="brand-subtitle">GO-TO-MARKET INTELLIGENCE</div></div></div>
+      <button id="sidebarToggle" class="sidebar-toggle" type="button" aria-label="收起侧边栏" aria-expanded="true" title="展开或收起导航">☰</button>
+    </div>
+    <div class="sidebar-rule"></div>
+    <div class="nav-label">WORKSPACE</div>
+    <nav class="side-nav" aria-label="功能导航">
+      <button type="button" class="nav-item active" id="navStudio" title="营销工作台"><span class="nav-glyph" aria-hidden="true">◈</span><span class="nav-text">营销工作台</span></button>
+      <button type="button" class="nav-item" id="navResults" title="查看生成报告" disabled><span class="nav-glyph" aria-hidden="true">▤</span><span class="nav-text">查看生成报告</span></button>
+      <button type="button" class="nav-item" id="navEvidence" title="补充证据与修订"><span class="nav-glyph" aria-hidden="true">✳</span><span class="nav-text">证据与迭代</span></button>
+      <button type="button" class="nav-item" id="navHistory" title="项目历史与版本"><span class="nav-glyph" aria-hidden="true">◷</span><span class="nav-text">项目历史</span></button>
+      <button type="button" class="nav-item" id="navNew" title="新建营销简报"><span class="nav-glyph" aria-hidden="true">＋</span><span class="nav-text">新建营销简报</span></button>
+    </nav>
+    <div class="nav-label nav-label-tools">HELP &amp; QUALITY</div>
+    <nav class="side-nav" aria-label="信息与帮助">
+      <button type="button" class="nav-item" id="navMethod" title="方法与证据"><span class="nav-glyph" aria-hidden="true">◇</span><span class="nav-text">方法与证据</span></button>
+      <button type="button" class="nav-item" id="navGuide" title="使用指南"><span class="nav-glyph" aria-hidden="true">ⓘ</span><span class="nav-text">使用指南</span></button>
+    </nav>
+    <div class="side-bottom">
+      <div class="side-mini-status" id="sideStatus"><span class="side-status-dot" aria-hidden="true"></span><div class="side-status-copy"><strong id="sideStatusText">正在检查服务</strong><small id="sideStatusDetail">模型配置状态</small></div></div>
+      <div class="side-version"><span class="side-version-copy">GlobalLaunch Lab · v0.6</span><span class="side-version-short">v0.6</span></div>
+    </div>
+  </aside>
+  <button class="sidebar-backdrop" id="sidebarBackdrop" type="button" aria-label="关闭导航"></button>
+
+  <div class="main-column">
+    <header class="topbar"><div class="topbar-left"><button id="mobileMenuBtn" class="mobile-menu-btn" type="button" aria-label="打开菜单" aria-expanded="false">☰</button><div class="breadcrumbs">Launch Studio <span>/</span> <strong>营销工作台</strong></div></div><div class="top-actions"><span class="system-status" id="systemStatus"><span class="status-dot"></span> Checking...</span><button id="topHelp" class="quiet-btn">如何使用 <span>↗</span></button></div></header>
+    <main id="mainContent">
+      <section class="hero"><div class="hero-topline"><span class="eyebrow"><span class="eyebrow-line"></span> THE LAUNCH STUDIO</span><span class="hero-version">MARKETING INTELLIGENCE / 001</span></div><div class="hero-grid"><div><h1>跨越市场边界，<br><span>让好创意真正落地。</span></h1><p>从品牌简报到跨文化传播策略。生成有依据意识的出海营销方案，让每一个假设都值得验证。</p><div class="hero-tags"><span>✦ AI-assisted strategy</span><span>◎ Cultural localisation</span><span>◌ Evidence-first</span></div></div><div class="orbit-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><div class="orbit-core">GL<span>↗</span></div><div class="orbit-label orbit-label-a">SYDNEY <span>●</span></div><div class="orbit-label orbit-label-b">LONDON <span>●</span></div><div class="orbit-spark">✳</div></div></div></section>
+
+      <section class="studio-head"><div><div class="kicker">01 / INPUT</div><h2>Campaign brief <span class="muted-light">/ 营销简报</span></h2><p>告诉我们你的品牌、目标受众和营销目标，剩下的交给 Launch Studio。</p></div><div class="studio-head-actions"><button class="btn secondary" id="exampleBtn">↺ <span>加载示例</span></button><button class="btn outline" id="resetBtn">+ <span>新建简报</span></button></div></section>
+
+      <div class="work-grid" id="workGrid">
+        <section class="form-panel panel" aria-labelledby="briefTitle">
+          <div class="panel-top"><div><span class="panel-step">BRIEF SETUP</span><h3 id="briefTitle">品牌与目标</h3></div><span class="step-indicator">STEP 01 — 03</span></div>
+          <form id="briefForm" autocomplete="off">
+            <div class="brief-fields">
+            <div class="field-group"><label for="brand">品牌 / 项目名称 <span class="required">*</span></label><input id="brand" name="brand" maxlength="80" placeholder="例如：Horizon Beauty" required/><span class="field-hint">建议使用真实品牌或明确标注为虚构案例</span></div>
+            <div class="field-group"><label for="description">产品或服务简介 <span class="required">*</span></label><textarea id="description" name="description" rows="3" maxlength="600" placeholder="你的产品是什么？提供什么价值？" required></textarea></div>
+            <div class="field-row"><div class="field-group"><label for="region">目标市场 <span class="required">*</span></label><select id="region" name="region"><option value="AU">🇦🇺 澳大利亚</option><option value="SG">🇸🇬 新加坡</option><option value="UK">🇬🇧 英国</option><option value="US">🇺🇸 美国</option></select></div><div class="field-group"><label for="industry">行业 <span class="required">*</span></label><select id="industry" name="industry"><option>Beauty &amp; personal care</option><option>Consumer electronics</option><option>Food &amp; beverage</option><option>Professional services</option><option>Fashion &amp; lifestyle</option><option>Other</option></select></div></div>
+            <div class="field-group"><label for="audience">核心目标客群 <span class="required">*</span></label><input id="audience" name="audience" maxlength="180" placeholder="例如：25–35岁的悉尼都市通勤女性" required/></div>
+            <div class="field-group"><label for="valueProp">差异化价值 / USP <span class="required">*</span></label><textarea id="valueProp" name="valueProp" rows="2" maxlength="300" placeholder="为什么有人会选择你，而不是现有选择？" required></textarea></div>
+            <div class="form-divider"><span>CAMPAIGN PARAMETERS</span></div>
+            <div class="field-row"><div class="field-group"><label for="goal">营销目标 <span class="required">*</span></label><select id="goal" name="goal"><option value="Awareness">品牌认知 / Awareness</option><option value="Lead generation">潜在客户 / Leads</option><option value="First purchases">首批销售 / Sales</option><option value="Market validation">需求验证 / Validation</option></select></div><div class="field-group"><label for="budget">30日投放预算 <span class="required">*</span></label><div class="money-input"><span id="currencyText">AUD</span><input id="budget" name="budget" type="number" min="100" max="10000000" step="1" value="10000" required/></div></div></div>
+            <fieldset class="channels-field"><legend>优先测试渠道 <span class="required">*</span></legend><div class="channel-options"><label class="channel"><input type="checkbox" value="Instagram" checked/><span>Instagram</span></label><label class="channel"><input type="checkbox" value="TikTok" checked/><span>TikTok</span></label><label class="channel"><input type="checkbox" value="Google Search" checked/><span>Google</span></label><label class="channel"><input type="checkbox" value="LinkedIn"/><span>LinkedIn</span></label><label class="channel"><input type="checkbox" value="Email"/><span>Email</span></label></div></fieldset>
+            </div>
+            <div class="brief-footer"><div class="field-group" id="accessGroup" hidden><label for="accessCode">演示访问口令</label><input id="accessCode" type="password" autocomplete="off" placeholder="由项目所有者提供" maxlength="128"/><span class="field-hint">仅在项目启用访问保护时需要，不是 AI 模型 API Key。</span></div><div class="privacy-hint"><span>♧</span> 当前浏览器会保存项目版本；实时模式会向所配置的模型服务发送输入和修订材料。</div><button class="generate-btn" type="submit" id="generateBtn"><span class="btn-stars">✦</span><span id="generateText">生成30天市场启动策略</span><span class="btn-arrow">↗</span></button><div class="fine-print">计划为决策草稿，实际投放前仍需市场验证与人工审核。</div></div>
+          </form>
+          <div class="brief-summary" id="briefSummary" hidden>
+            <div><span class="summary-kicker">ACTIVE CAMPAIGN BRIEF</span><strong id="summaryBrand">—</strong><p id="summaryFacts"></p><small id="summaryChannels"></small></div>
+            <button type="button" id="editBrief" class="btn secondary">编辑简报 ↗</button>
+          </div>
+        </section>
+
+        <section class="result-panel panel" aria-labelledby="outputTitle">
+          <div class="panel-top result-panel-top"><div><span class="panel-step">OUTPUT PREVIEW</span><h3 id="outputTitle">Launch intelligence</h3></div><span class="result-pill" id="resultPill">AWAITING INPUT</span></div>
+          <div id="outputBody" aria-live="polite">
+            <div class="empty-state"><div class="empty-symbol"><div class="empty-shape shape-a"></div><div class="empty-shape shape-b"></div><div class="empty-shape shape-c"></div><span>✳</span></div><div class="empty-kicker">YOUR NEXT MARKET STARTS HERE</div><h4>从一个想法，<br>到一份可执行的增长方案。</h4><p>填写上方营销简报，或加载示例快速体验。我们将梳理市场定位、广告本地化、预算实验与风险清单。</p><div class="empty-feature-list"><span>01 <b>Launch strategy</b></span><span>02 <b>Localized creatives</b></span><span>03 <b>Risk &amp; evidence review</b></span></div></div>
+          </div>
+        </section>
+      </div>
+      <section class="iteration-workspace" id="iterationWorkspace" hidden aria-labelledby="iterationTitle">
+        <div class="evolve-heading"><div><span class="kicker">03 / EVOLVE</span><h2 id="iterationTitle">Evidence &amp; Iteration <small>/ 证据驱动的策略迭代</small></h2><p>新增的证据和想法不会直接覆盖原报告。先生成修订草案、核对变化，再确认采用。</p></div><div class="version-switch"><div class="version-token" id="versionToken">Report v1</div><button type="button" class="btn outline" id="compareHistory" hidden>⇄ 对比上一版</button></div></div>
+        <div class="evolve-grid">
+          <form id="revisionForm" class="panel evolve-form">
+            <div class="evolve-card-title"><span class="panel-step">NEW INPUT</span><h3>补充证据 / 想法</h3></div>
+            <div class="evolve-form-body">
+              <div class="field-row"><div class="field-group"><label for="evidenceKind">信息类型</label><select id="evidenceKind"><option value="interview">用户访谈 / 一手观察</option><option value="campaign">广告及运营数据</option><option value="research">外部资料 / 研究</option><option value="idea">新想法 / 待验证假设</option></select></div><div class="field-group"><label for="evidenceDate">记录日期（可选）</label><input id="evidenceDate" type="date"/></div></div>
+              <div class="field-group"><label for="evidenceContent">新增内容 <span class="required">*</span></label><textarea id="evidenceContent" rows="4" maxlength="1400" minlength="10" required placeholder="例如：已访谈12位目标用户，其中8位更关注成分说明。说明抽样方式与局限，避免推断整个市场。"></textarea><span class="field-hint">请勿输入敏感个人资料；信息由你提供，系统不会独立核实。</span></div>
+              <div class="field-group"><label for="evidenceSource">信息来源（真实资料必填）</label><input id="evidenceSource" maxlength="260" placeholder="例如：2026-10-10 悉尼消费者访谈笔记（12人）"/><span class="field-hint">填写具体资料名称或URL，不会自动抓取或验证URL。</span></div>
+              <div class="field-group"><label for="changeDirection">希望如何修改？（可选）</label><textarea id="changeDirection" rows="2" maxlength="800" placeholder="例如：保留总预算和所选渠道，优先调整信息表达与验证实验。"></textarea></div>
+              <fieldset class="revision-sections"><legend>允许 AI 修改的章节 <span class="required">*</span></legend><div class="revision-chips"><label><input type="checkbox" value="strategy" checked/> <span>策略洞察</span></label><label><input type="checkbox" value="localisation" checked/> <span>广告本地化</span></label><label><input type="checkbox" value="execution"/> <span>预算与执行</span></label><label><input type="checkbox" value="risk"/> <span>风险</span></label><label><input type="checkbox" value="evidence" checked/> <span>证据清单</span></label></div></fieldset>
+              <p class="evolve-advisory">未勾选章节由服务器锁定，不能被模型修改。预算总额、用户选择的渠道始终锁定。</p>
+              <button type="submit" id="reviseBtn" class="generate-btn"><span>✳</span><span id="reviseText">生成修订草案</span><span>↗</span></button>
+            </div>
+          </form>
+          <div class="panel evolve-preview"><div class="evolve-card-title"><span class="panel-step">CHANGE REVIEW</span><h3>修订对比与证据记录</h3></div><div id="revisionPreview" class="evolve-preview-body"><div class="revision-placeholder"><strong>等待新的材料</strong><p>补充内容后，AI会生成一份待确认的修订草案，并显示改动范围。你可以采用或放弃，旧版本始终保留。</p></div></div></div>
+        </div>
+      </section>
+      <section class="history-section" id="historySection" aria-labelledby="historyTitle"><div class="history-head"><div><span class="kicker">04 / PROJECT LIBRARY</span><h2 id="historyTitle">Project History <small>/ 项目与版本</small></h2><p>保存在当前浏览器的本地存储中。换电脑、清除浏览数据或使用无痕模式可能导致历史丢失。</p></div><div class="history-tools"><button type="button" id="backupProjects" class="btn outline">↓ 导出项目备份</button><button type="button" id="importProjects" class="btn secondary">↑ 导入备份</button><input id="importProjectFile" type="file" accept=".json,application/json" hidden/></div></div><div class="history-panel" id="projectHistory"><p class="history-empty">暂无本地项目记录。生成首份报告后将自动建立版本 v1。</p></div></section>
+      <footer class="page-footer"><span>GlobalLaunch AI · Strategy that travels.</span><span>PROTOTYPE v0.6 — FOR DEMONSTRATION &amp; HUMAN REVIEW</span></footer>
+    </main>
+  </div>
+</div>
+<div id="printReportRoot" aria-hidden="true"></div>
+<div class="toast" role="status" id="toast" aria-live="polite"></div>
+<dialog id="infoDialog"><div class="dialog-head"><h3 id="dialogTitle">工作原理</h3><button id="closeDialog" aria-label="关闭">✕</button></div><div id="dialogBody"></div><button class="btn outline dialog-close" id="doneDialog">明白了</button></dialog>
+<script type="module" src="/app.js?v=0.6.0"></script>
+</body>
+</html>

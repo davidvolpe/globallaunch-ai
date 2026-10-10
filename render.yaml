@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: globallaunch-ai
+    runtime: node
+    buildCommand: echo 'No dependencies to install'
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: AI_PROVIDER
+        value: deepseek
+      - key: DEEPSEEK_API_KEY
+        sync: false
+      - key: DEEPSEEK_MODEL
+        value: deepseek-flash
+      - key: MAX_DAILY_LIVE_CALLS
+        value: 30
+      - key: APP_ACCESS_CODE
+        sync: false
