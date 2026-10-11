@@ -1,163 +1,76 @@
-# GlobalLaunch AI v0.6 — Evidence & Iteration Workspace
+# GlobalLaunch AI | AI 跨境营销决策平台
 
-**AI跨境营销策略 + 持续证据驱动修订**。基于 v0.5，新增独立的修订工作台、按章节的变更保护、修订审核、浏览器本地多项目版本历史、已保存版本差异对比、JSON备份与恢复、报告新增证据附录。保留 DeepSeek/OpenAI Responses API、全宽决策仪表盘、预算图表、4周执行计划、Markdown和PDF导出。
+**Evidence-Driven AI Cross-Border Marketing Decision Platform**  
+**证据驱动的 AI 跨境营销决策平台 | 作品演示 / Portfolio MVP · v0.6**
 
-> 产品状态：演示用MVP，不代表完成实际市场调研。所有用户输入的新证据均为「未独立核验」；本地保存不等于云端账户同步。
+[**Live Demo / 在线体验**](https://globallaunch-ai.onrender.com) · [**Bilingual Project Portfolio / 中英双语项目说明 (PDF)**](docs/GlobalLaunch_AI_BlueFocus_Portfolio_Bilingual.pdf)
 
-**Windows升级操作说明：** [docs/UPGRADE-V0.6-WINDOWS.md](docs/UPGRADE-V0.6-WINDOWS.md)
+> **演示提示 / Demo note**：在线网站部署于海外 Render，部分中国大陆网络可能无法稳定访问。可先阅读下方产品截图与 PDF。项目中的品牌、访谈及营销数据均为演示案例，不代表真实客户研究或效果验证。  
+> Hosted on Render outside mainland China; access may be unreliable on some mainland Chinese networks. Screenshots and the PDF provide an alternative overview. Demo brands, interviews and campaign figures are illustrative, not independently validated customer research or results.
 
-## 快速运行
+## 01 · 产品是什么 / What it does
 
-1. 安装 Node.js 20+。
-2. 将 `.env.example` 复制为 `.env`，在 `.env` 里配置 `DEEPSEEK_API_KEY`（不要向他人发送密钥）。
-3. 在项目文件夹运行 `npm.cmd start`（Windows PowerShell）或 `npm start`（其他终端）。
-4. 打开 `http://127.0.0.1:3000`。
-5. 点击「生成30天市场启动策略」，然后进入侧栏「证据与迭代」。
+**中文：** GlobalLaunch AI 面向跨境营销方案的早期规划与验证。用户输入品牌定位、目标市场、客户人群、预算和渠道，系统通过 DeepSeek API 生成结构化营销草稿；随后可以补充研究证据或新的想法，指定受影响章节，查看 AI 修订草稿与版本差异，并在人工确认后保存新版报告。
 
-## v0.6 工作流
+**English:** GlobalLaunch AI is an AI-assisted workspace for drafting and validating cross-border marketing strategies. Users provide a brand brief, target market, audience, budget and channels. The application produces a structured strategy draft via the DeepSeek API. Users can then add new observations or ideas, revise selected sections, inspect changes, and approve a new report version.
 
-**v1原始报告 → 新增材料（含来源） → 选择章节 → AI修订草案 → 前后对比 → 人工确认采用 → v2不可覆盖版本 → PDF/Markdown导出**。
+### 核心功能 / Core capabilities
 
-- `/api/generate`：生成初版报告。
-- `/api/revise`：对当前报告做定向修订，返回结构化草稿，*不*自动保存。
-- 浏览器 `localStorage`：保存多项目和多版本；导出/导入 JSON 备份。
-- 未选择的章节由服务器从原版恢复，模型的越权修改不能进入新报告；预算金额与渠道始终由原始简报约束。
-- 服务端 API Key 不会进入网页代码或浏览器本地项目历史。
+- **Strategy generation / 策略生成：** positioning, localised advertising copy, channel budget, four-week plan, KPI definitions and risk review / 品牌定位、本地化文案、渠道预算、四周计划、KPI 与风险检查。
+- **Evidence & iteration / 证据迭代：** add observations with source details; draft targeted revisions without silently overwriting the prior report / 记录来源、按章节修订、不自动覆盖旧版。
+- **Version comparison / 版本对比：** review and approve v1 → v2 changes; retain history in the current browser / 人工确认后保存新版、对比旧版。
+- **Report delivery / 报告交付：** interactive dashboard, budget visualisation and Markdown/PDF export / 可视化仪表盘、预算展示及 Markdown/PDF 导出。
 
-## 测试
+## 02 · 界面预览 / Product screenshots
+
+![GlobalLaunch AI dashboard — illustrative UI](assets/dashboard.png)
+
+*AI marketing dashboard / AI 营销决策工作台。示例画面，不代表经验证的市场数据。*
+
+![Evidence and iteration — illustrative test content](assets/iteration.png)
+
+*Evidence & Iteration / 证据驱动修订。图中访谈信息属于模拟测试数据，不是真实访谈结果。*
+
+## 03 · 90 秒体验路径 / Suggested quick walkthrough
+
+1. Open the **Live Demo** and select **加载示例 / Load example**. / 打开在线产品并加载示例。
+2. Generate a **30-day strategy draft** and view its budget, KPI and risk sections. / 生成 30 天策略草稿并查看预算、指标与风险。
+3. Open **证据与迭代 / Evidence & Iteration**, add an explicitly *hypothetical* observation, and select the sections to revise. / 加入明确标记的模拟信息并选择需修订章节。
+4. Review the proposed changes, approve a new version, then compare v1 with v2. / 审查修订草稿，确认保存并对比版本。
+5. Export the report using the browser's **Print → Save as PDF** workflow. / 使用浏览器打印对话框另存 PDF。
+
+## 04 · 技术架构 / Technical overview
+
+- **Frontend / 前端：** HTML, CSS, vanilla JavaScript; responsive UI.
+- **Backend / 后端：** Node.js HTTP server.
+- **AI provider / 模型：** DeepSeek Responses API, server-side API key, structured outputs and input validation.
+- **Deployment / 部署：** GitHub + Render Web Service.
+- **Revision history / 历史记录：** browser localStorage with JSON export/import; no cloud account syncing.
+- **Testing / 测试：** automated tests for generation, mock provider integration, budgeting, revision constraints and version history; additional browser/PDF checks used simulated data.
+
+### Run locally / 本地运行
+
+Requires Node.js 20+. / 需要 Node.js 20 或以上。
 
 ```bash
-npm test
+cp .env.example .env
+# Edit .env locally and add your own DEEPSEEK_API_KEY. Never commit it.
+npm start
 ```
 
-自动化测试包含 API生成、模拟 DeepSeek 调用、修订接口、章节锁定、预算核算、用户来源验证和版本历史。浏览器端另对模拟数据做了桌面/手机交互与PDF检查。
+Windows PowerShell: `Copy-Item .env.example .env`, then `notepad .env`, then `npm.cmd start`.
 
-## 重要限制
+Open `http://127.0.0.1:3000`. If no provider key is configured, the project uses a clearly labelled local Demo Mode. / 无密钥时运行明确标识的本地演示模式。
 
-项目历史只保存在**当前浏览器本地**，并不自动同步给招聘人员或其他设备；JSON备份包含用户输入的品牌信息，请保管好。当前只支持手工文字记录，不处理上传文档，也不独立搜索/确认来源。AI修订消耗新的API调用额度，且内容需要人工审核。公网部署时要设置访问限制、调用预算和数据保护措施。
+## 05 · 责任边界 / Responsible use & limitations
+
+- Generated reports are **drafts requiring human verification**; this tool does not independently verify market data or legal compliance. / AI 内容是待人工核查的草稿，不提供独立市场事实核验或法律合规结论。
+- New evidence is **user-supplied and not independently authenticated**. Illustrative interviews in demo materials are simulated. / 新增证据由使用者提供，未经系统独立核验；演示访谈均为虚构测试材料。
+- Report histories reside in the **current browser only**; clearing browser data may erase them. JSON export/import is provided for backup. / 历史记录只保存在当前浏览器，需通过 JSON 备份。
+- This is a **portfolio MVP**, not a validated commercial product, proven campaign or ROI claim. / 本项目是招聘展示用 MVP，并非已验证商业产品或真实广告效果。
+- AI-assisted coding tools were used in building and testing this prototype. / 开发与测试过程中使用了 AI 辅助编程工具。
 
 ---
 
-## v0.4.1 — Browser cache hotfix
-
-This patch fixes a mixed-version screen where the sidebar displayed v0.4 but the report area still used v0.3 JavaScript (two old buttons and no dashboard). Static assets now use `Cache-Control: no-store`, and the HTML links to versioned JS/CSS URLs. No AI provider, API key, prompt, or report schema changes. Keep the existing private `.env` and restart the server after upgrading.
-
-# GlobalLaunch AI — Launch Studio (v0.4)
-
-**A portfolio-ready, DeepSeek/OpenAI-powered cross-border marketing MVP.** Enter a brand brief and obtain a **provisional** target-market positioning plan, localised English ad copy, 30-day budget/experiment roadmap, and a claims/evidence review.
-
-> Without an API key the website runs an explicitly labelled **DEMO MODE** using local authored templates. With a DeepSeek or OpenAI API key it uses the **Responses API with strict JSON Schema**. A successful request is necessary to verify actual model connectivity.
-
-## What's new in v0.4
-
-- A polished **Decision Dashboard** with marketing objective, segment, budget chart, four-week timeline, KPIs and risk status.
-- An expanded Execution view with native CSS donut chart, channel spend legend, weekly cards, KPI definitions and A/B experiments.
-- A readable, complete **PDF-ready A4 report**. Click **↗ 导出PDF**, choose **Save as PDF / 另存为PDF** in Chrome/Edge's print dialogue, then save. This does not depend on a third-party PDF service or an API request.
-- Existing API client, model/schema, budget repair, access code and `.env.example` stay unchanged from v0.3. Model connectivity must still be checked on your own local machine with your private key.
-- No PDF design-data discrepancies: dashboard, printed PDF and Markdown are all rendered from the **same API JSON response**.
-
-**Upgrading from v0.3 with a working DeepSeek API?** Keep the old project as backup, unzip the new project to a separate location, **copy your private `.env` from the old folder to the new folder**, stop the old server, and run `npm.cmd start` in the new folder. See the [illustrated-by-steps Windows guide](docs/UPGRADE-V0.4-WINDOWS.md). **Never share or upload `.env`.**
-
-## Quick start on Windows
-
-1. Install [Node.js 20+](https://nodejs.org/). (Node.js 22 LTS is a good choice.)
-2. Download and unzip the project. In Windows File Explorer open the `globallaunch-ai` folder.
-3. Click the address bar, type `powershell`, press Enter.
-4. Run `npm.cmd start` in Windows PowerShell (or `npm start` if script execution is enabled).
-5. Open **http://127.0.0.1:3000** in your browser and click **生成30天市场启动策略** to test Demo Mode.
-
-No `npm install` needed: this project has no third-party runtime dependencies.
-
-## Connect DeepSeek (recommended for low-cost demo) or OpenAI
-
-Create a DeepSeek API key at https://platform.deepseek.com/ and check your API balance. DeepSeek website chat being free does **not** mean API is free.
-
-**PowerShell:**
-
-```powershell
-Copy-Item .env.example .env
-notepad .env
-```
-
-Set the following inside `.env`:
-
-```dotenv
-AI_PROVIDER=deepseek
-DEEPSEEK_API_KEY=YOUR_DEEPSEEK_API_KEY_HERE
-DEEPSEEK_MODEL=deepseek-flash
-DEEPSEEK_BASE_URL=https://api.deepseek.com
-```
-
-DeepSeek's official Responses API supports `text.format` structured outputs. With this configuration it sends requests to `https://api.deepseek.com/responses`. To use OpenAI instead, change `AI_PROVIDER=openai` and set `OPENAI_API_KEY`, `OPENAI_MODEL`, and `OPENAI_BASE_URL`.
-
-Restart the Node server (Ctrl+C, then `npm.cmd start`), refresh the browser. Header should now say **API CONFIGURED** (not yet a verified connection). Submit an example to verify a successful AI response labelled **AI DRAFT READY**. Do not send the actual key or upload `.env` to GitHub.
-
-**IMPORTANT:** If the provider returns `401`, check API Key. For `429`, check API balance, quota, limits, and/or the project's own daily limit. For `400`, confirm the selected model supports JSON Schema structured output. A `DEMO MODE` result **never counts as proof of AI connectivity**.
-
-More detailed steps: [DeepSeek setup guide](docs/DEEPSEEK-SETUP.md).
-
-## Safety and public demo
-
-- DeepSeek and OpenAI tokens incur usage charges; neither API is included in ChatGPT Plus.
-- A basic per-IP throttle (5/minute in AI mode) and `MAX_DAILY_LIVE_CALLS=30` in-process limit are provided. The counter is **not** a billing hard cap and resets after server restart / scale-out.
-- Set `APP_ACCESS_CODE` to a random private code if the public demo should be restricted; an access-code field appears on the website when needed. The reviewer needs this code separately. Do not reuse your AI API key as the access code.
-- Use the API project's spend controls/alerts and avoid feeding sensitive customer data into public demos. Server does not keep a database but sends inputs to the selected AI provider for live generation.
-- Report claims are working assumptions; no live competitive research, verifiable citations, legal compliance guarantees or reliable ROI estimates are produced in v0.4.
-
-## Features
-
-- Brand brief with four markets (AU / SG / UK / US), industry, goal, channels, budget.
-- 6 output views: Executive Dashboard, Strategy, Localisation, Execution, Risk Review, Evidence Ledger.
-- Exact percentage and currency budget reconciliation across selected channels.
-- Colour-coded budget donut, 4-week roadmap, KPI cards, risk severity and experiment design.
-- **Full A4 PDF export** via the browser native Print → Save as PDF dialogue (six report chapters, regardless of active tab); Markdown export and copy-to-clipboard summary remain available.
-- Secure server-side DeepSeek/OpenAI key, strict output schema, refusal/time-out/API error handling.
-- Mobile-responsive website with a local rule-based fallback **only if no API key is configured**.
-
-## Test
-
-```bash
-npm test
-```
-
-Tests cover validation, Demo Mode, mock Responses API integration, input/budget reconciliation, error messaging, access code, and per-day quota. Network tests use an **in-process simulated provider endpoint** and do not incur API charges.
-
-## Deploy for recruitment review
-
-This is a Node.js server, not a static-only site. Push the folder (without `.env`) to GitHub and deploy via Render/Railway/VPS:
-
-- **Build command**: `echo No dependencies`
-- **Start command**: `npm start`
-- **HOST**: `0.0.0.0`
-- **AI_PROVIDER**: `deepseek`
-- **DEEPSEEK_API_KEY**: add using host Secret/Environment settings
-- **DEEPSEEK_MODEL**: `deepseek-flash`
-- **MAX_DAILY_LIVE_CALLS**: `30` (adjust after measuring usage)
-- **APP_ACCESS_CODE**: optional; omit to allow reviewers to interact without extra instructions, but keep strict spend limits
-
-A sample `render.yaml` and `Dockerfile` are included. After deploy, test on a separate browser/phone via the public HTTPS URL, including dynamic generation and report export. A deployment is **not** included in this deliverable; you must connect your own hosting account and API key.
-
-## API routes
-
-- `GET /api/health` → `mode` (`demo`/`live`), `model` and `accessRequired` (never the key)
-- `POST /api/generate` → validated brief → structured five-part report, tagged by origin
-
-## Technical design and recruitment docs
-
-- [WINDOWS v0.3 → v0.4 UPGRADE](docs/UPGRADE-V0.4-WINDOWS.md)
-- [MVP SPEC](docs/MVP-SPEC.md)
-- [ARCHITECTURE](docs/ARCHITECTURE.md)
-- [DEEPSEEK SETUP](docs/DEEPSEEK-SETUP.md) · [OPENAI SETUP](docs/OPENAI-SETUP.md)
-- [RECRUITMENT SUBMISSION](docs/SUBMISSION-GUIDE.md)
-
-**Project scope note**: This is a time-boxed portfolio MVP. It is not connected to live advertising platforms, official market databases, or a live compliance engine. Reports remain drafts for human review.
-
-
-## v0.5 Layout & Navigation Upgrade
-
-- Removed the decorative workspace switcher and non-functional gear.
-- Sidebar now includes: Campaign builder, View report (enabled after generation), New brief, Method & evidence, and Help.
-- Added collapse/expand on desktop and a mobile navigation drawer.
-- Changed the desktop report to full width beneath the brief to eliminate long-column whitespace.
-- After generation the brief becomes a compact, editable summary; PDF and Markdown exports work as before.
-- `.env` remains private: copy it locally from your existing v0.4.1 project when upgrading.
+**GlobalLaunch AI · v0.6 · Portfolio prototype / 招聘作品演示**  
+[Live Demo](https://globallaunch-ai.onrender.com) · [Project PDF / 项目说明](docs/GlobalLaunch_AI_BlueFocus_Portfolio_Bilingual.pdf)
